@@ -49,6 +49,12 @@ APIUrls.getUrl('cats');
 
 And it will give you: `https://my.api.com/v1/cats`
 
+And for the routes with params: 
+
+```js
+APIUrls.getUrl('catsByHairyness', 'fuzzy');
+```
+
 
 You can now use it wherever you want
 

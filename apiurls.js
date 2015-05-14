@@ -3,7 +3,7 @@
  * @name        pvarache.APIUrls.api.service:APIUrls
  * @description Generates full urls based on the server configuration and stored routes
  */
-angular.module('pvarache.APIUrls')
+angular.module('pvarache.APIUrls', [])
     .provider('APIUrls', function () {
 
         this.hostname = "";
