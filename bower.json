@@ -1,0 +1,23 @@
+{
+  "name": "angular-api-urls",
+  "version": "1.0.0",
+  "authors": [
+    "Paul Varache <perso@paulvarache.ninja>"
+  ],
+  "description": "Simple angular provider to manage API urls",
+  "main": "apiurls.js",
+  "keywords": [
+    "angular",
+    "api",
+    "urls",
+    "provider"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
