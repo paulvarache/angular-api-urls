@@ -8,7 +8,7 @@
   },
   "scripts": {
     "test": "karma start karma.config.js",
-    "test-ci": "karma start karma.config-ci.js --reporters=junit",
+    "test-ci": "karma start karma.config-ci.js --reporters=junit"
   },
   "repository": {
     "type": "git",
