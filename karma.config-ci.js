@@ -5,10 +5,18 @@ module.exports = function(config) {
   config.set({
 
     singleRun: true,
-    reporters: ['dots','junit'],
+    reporters: ['dots','junit', 'coverage'],
     junitReporter: {
         outputDir: 'report',
         outputFile: 'test-results.xml'
+    },
+
+    coverageReporter: {
+        dir: 'coverage',
+        reporters: [
+            { type: 'html', subdir: 'report-html' },
+            { type: 'clover', subdir: 'report-clover' },
+        ]
     },
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
@@ -39,6 +47,7 @@ module.exports = function(config) {
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
+        'apiurls.js': 'coverage'
     },
 
     // web server port
