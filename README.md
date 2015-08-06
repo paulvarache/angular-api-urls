@@ -1,9 +1,9 @@
-#angular-api-urls
+# angular-api-urls
 
 Manages for you the routes of your API. Just provide your API configuration and
 the routes you want to use and it will generates your URLs.
 
-##Example
+## Example
 
 First install the module with a simple
 
@@ -11,7 +11,12 @@ First install the module with a simple
 bower install --save angular-api-urls
 ```
 
-Then make something cool
+Then make something cool.
+
+There is two ways to configure APIs.
+
+If you have only one API, just configure it with the `APIUrlsProvider` params.
+Otherwise, you can add your configuration in the `apis` properties like this:
 
 ```js
 // Your awesome module needs to depend on pvarache.APIUrls
@@ -39,6 +44,19 @@ angular.module('MyApp', ['pvarache.APIUrls'])
                 return '/cats?hairyness=' + hairyness;
             }
         };
+
+        // Add another api if you want
+        APIUrlsProvider.apis.farm = {
+            hostname: 'farm.com',
+            suffix: '/v1',
+            urls: {
+                'chickens': '/chickens',
+                'chicken': function (id) {
+                    return '/chickens/' + id;
+                }
+            }
+        };
+
     }]);
 ```
 Once configured, you can use it like that
@@ -49,12 +67,18 @@ APIUrls.getUrl('cats');
 
 And it will give you: `https://my.api.com/v1/cats`
 
-And for the routes with params: 
+And for the routes with params:
 
 ```js
 APIUrls.getUrl('catsByHairyness', 'fuzzy');
 ```
 
+The other APIs can be accessed with:
+
+```js
+// Will return http://farm.com/v1/chickens
+APIUrls.api('farm').url('chickens');
+```
 
 You can now use it wherever you want
 

@@ -6,6 +6,8 @@
 angular.module('pvarache.APIUrls', [])
     .provider('APIUrls', function () {
 
+        this.apis = {};
+
         this.hostname = "";
         this.suffix = "";
         this.port = "80";
@@ -13,8 +15,8 @@ angular.module('pvarache.APIUrls', [])
         this.urls = {};
 
         this.$get = (function () {
-
-            return {
+            var Funcs = {
+                apis: this.apis,
                 /**
                  * @ngdoc       property
                  * @name        APIUrls#hostname
@@ -59,21 +61,32 @@ angular.module('pvarache.APIUrls', [])
                  * @return {string}     Full request url
                  */
                 getUrl: function (key) {
-                    var url = this.urls[key],
+                    var argsArray = Array.prototype.slice.call(arguments);
+                    argsArray = [this].concat(argsArray);
+                    return Funcs.generateUrl.apply(this, argsArray);
+                },
+                generateUrl: function (api, key) {
+                    var url = api.urls[key],
                         argsArray;
 
                     if (angular.isFunction(url)) {
                         argsArray = Array.prototype.slice.call(arguments);
-                        argsArray.splice(0, 1);
+                        argsArray.splice(0, 2);
                         url = url.apply(null, argsArray);
                     }
 
-                    return (this.secure ? "https://" : 'http://') +
-                        this.hostname + ':' +
-                        this.port +
-                        this.suffix +
+                    return (api.secure ? "https://" : 'http://') +
+                        api.hostname + ':' +
+                        (api.port || 80) +
+                        (api.suffix || '') +
                         url;
+                },
+                api: function (apiName) {
+                    return {
+                        url: Funcs.generateUrl.bind(this, this.apis[apiName])
+                    };
                 }
             };
+            return Funcs;
         }).bind(this);
     });

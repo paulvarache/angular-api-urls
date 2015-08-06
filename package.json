@@ -1,0 +1,27 @@
+{
+  "name": "angular-api-urls",
+  "version": "1.1.0",
+  "description": "Manages for you the routes of your API. Just provide your API configuration and the routes you want to use and it will generates your URLs.",
+  "main": "apiurls.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulvarache/angular-api-urls.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/paulvarache/angular-api-urls/issues"
+  },
+  "homepage": "https://github.com/paulvarache/angular-api-urls#readme",
+  "devDependencies": {
+    "angular": "^1.4.3",
+    "angular-mocks": "^1.4.3",
+    "should": "^7.0.2"
+  }
+}
